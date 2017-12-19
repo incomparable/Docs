@@ -1,0 +1,457 @@
+Linux Bashrc
+
+Open the terminal and Use Command
+
+gedit ~/.bashrc
+
+# Mani Custom settings
+================ 
+
+export GIT_EDITOR=vi
+
+alias ..='cd ..'
+
+function cd() {
+    builtin cd "$*" && ls
+}
+
+
+Git Custom Commands
+================== 
+gs() {
+    git status
+}
+
+
+gc() {
+    git commit
+}
+
+
+gd() {
+    git diff
+}
+
+
+gb() {
+    git branch
+}
+
+
+gp() {
+    git push
+}
+
+
+git commit push all modified files
+=================================== 
+gcpa() {
+    echo "Commit Message: $1"
+
+    echo "Commiting.................."
+    git commit -am "$1"
+
+    echo "Pushing...................."
+    git push
+
+    echo "Done......................."
+}
+
+
+#--show git branch in prompt (on right hand side)---#
+source /usr/lib/git-core/git-sh-prompt
+export GIT_PS1_SHOWDIRTYSTATE=true
+export PS1="\[\033[36m\][\!][\t] \[\033[1;33m\]\u\[\033[0m\]@\h:\[\033[36m\][\w]:\[\033[0m\]\$(__git_ps1) "
+#-----------------------------------------------------------------------------------------------------------#
+
+
+Custom Network Refresh
+=======================
+network_restart() {
+  service network-manager stop
+  rm /var/lib/NetworkManager/NetworkManager.state
+  service network-manager start
+}
+
+
+git_details() {
+    cat ~/.netrc | head -2 && git config --list
+}
+
+dj_runserver() {
+    python manage.py runserver
+}
+
+dj_createsuperuser() {
+    python manage.py createsuperuser
+}
+
+dj_migrate() {
+    python manage.py migrate
+} 
+
+set nobackup
+set nowritebackup
+set noswapfile
+set noundofile
+
+
+gameserver() {
+ cd /cygdrive/d/work/nodejs/gameserver
+}
+alias vi='gvim'
+
+boatapp_server() {
+    killall python
+    cd work/boatapp
+    source venv_boatapp/bin/activate
+    cd server
+    python server.py
+   
+}
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+
+--------------------------------------------------------------------------------------------------------------------------
+       Linux Commands
+       
+       
+Installing…
+
+
+Upgrade Currently Installed Packages after installing linux
+     sudo apt-get update
+
+
+Next, upgrade installed packages to their latest available versions
+    sudo apt-get upgrade
+
+
+Install terminator
+sudo add-apt-repository ppa:gnome-terminator/nightly
+sudo apt-get update
+sudo apt-get install terminator
+
+
+Uninstall just terminator
+sudo apt-get remove terminator
+
+
+Install sublime-text-2
+sudo add-apt-repository ppa:webupd8team/sublime-text-2
+sudo apt-get update
+sudo apt-get install sublime-text
+
+Youtube download
+Youtube-dl <url>
+
+
+Script download
+Wget <url>
+wget https://mbostock.github.com/d3/d3.v2.js
+
+
+Run.sh
+$ chmod a+x run.sh
+
+
+Install Heroku
+sudo add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install heroku
+heroku login
+
+
+Install SQLITE
+-1- 
+sudo apt-get update
+sudo apt-get install sqlite3 libsqlite3-dev
+
+-2-
+sudo apt-cache search sqlite3-dev
+sudo apt install libsqlite3-dev-y
+sudo apt -f install
+sudo apt install sqllitebrowser
+sqlitebrowser &[1] 2742
+
+
+Install Teamviewer
+wget https://download.teamviewer.com/download/teamviewer_i386.deb
+sudo dpkg -i teamviewer_i386.deb
+sudo apt update && sudo apt -f install
+sudo teamviewer --daemon enable
+Posted by Manish Sharma at 10:28 AM No comments: 
+Email This
+BlogThis!
+Share to Twitter
+Share to Facebook
+Share to Pinterest
+
+            Git Commands
+
+$ git clone 
+   Makes a Git repository copy from a remote source.
+
+$ git status 
+   Shows you the status of files in the index versus the working directory. 
+
+$ git add
+   Adds files changes in your working directory to your index.
+
+$ git commit 
+   Takes all of the changes written in the index, creates a new commit object pointing to it and sets the branch to point to that new commit.
+
+$ git push
+   Pushes all the modified local objects to the remote repository and advances its branches.
+
+$ git pull
+   Fetches the files from the remote repository and merges it with your local one.
+
+$ git reset
+   Resets your index and working directory to the state of your last commit.
+
+$ git remote
+   Shows all the remote versions of your repository
+
+$ git log
+   Shows a listing of commits on a branch including the corresponding details.
+
+$ git diff
+    Generates patch files or statistics of differences between paths or files in your git repository, or your index or your working directory.
+
+$ gitk
+    Graphical Tcl/Tk based interface to a local Git repository.
+
+$ git rm
+    Removes files from your index and your working directory so they will not be tracked.
+
+$ git merge
+    Merges one or more branches into your current branch and automatically creates a new commit if there are no conflicts.
+
+$ git checkout
+    Checks out a different branch – switches branches by updating the index, working tree, and HEAD to reflect the chosen branch.
+
+$ git checkout <branch name>
+    Switch one branch to another. In above command we switch to  <branch name> branch
+
+$ git checkout .
+    Reset the code to previous code 
+
+$ git branch
+    Lists existing branches, including remote branches if ‘-a’ is provided. Creates a new branch if a branch name is provided.
+
+$ git branch <branch name>
+    create a new branch (new branch named <branch name>)
+
+$ git config
+    Sets configuration values for your user name, email, gpg key, preferred diff algorithm, file formats and more.
+
+ 
+--------------------------------------------------------------------------------------------------------------------------
+              MongoDB Commands 
+
+
+mongo -u admin -p 123 --authenticationDatabase admin
+
+Create DB
+============
+
+> use dbname
+
+To create db use need to insert data in atleast one document
+db.movie.insert({"name":"tutorials point"})
+
+
+NOTE:
+In MongoDB default database is test. If you didn't create any database, 
+then collections will be stored in test database.
+
+
+Drop DB
+=========
+
+select db with use command
+
+> use nskdb
+> db.dropDatabase()
+
+
+Create Collection
+====================
+
+syntax is:-
+db.createCollection(name, options)
+
+options can be :-
+ - capped, autoIndexId, size, max
+
+> db.createCollection("mycollection")
+> db.createCollection("mycol", { capped : true, autoIndexId : true, size : 
+   6142800, max : 10000 } )
+
+> db.createCollection("user", { autoIndexId : true } )    
+
+> show collections
+
+
+Drop Collection
+=================
+
+> db.mycollection.drop()
+
+The insert() Method
+=======================
+
+db.mycol.insert({
+   title: 'MongoDB Overview', 
+   likes: 100
+})
+
+BULK WRITE
+-----------
+To insert multiple documents in a single query, you can pass an array of documents in insert() command.
+
+db.mycol.insert([{
+   title: 'Python Overview', 
+   likes: 200
+},
+{
+   title: 'Nodejs Overview', 
+   likes: 70
+},
+
+])
+
+
+The find() Method
+=======================
+
+db.COLLECTION_NAME.find()
+
+> db.mycol.find()
+> db.mycol.find().pretty()
+> db.mycol.find({likes: 100}).pretty()
+
+Posted by Manish Sharma at 9:57 AM No comments: 
+Email This
+BlogThis!
+Share to Twitter
+Share to Facebook
+Share to Pinterest
+
+              Linux MongoDB
+
+Install MongoDB
+=============
+
+Step 1 - Importing the Public Key
+
+$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+
+
+Step 2 - Create source list file MongoDB
+
+$ echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+Step 3 - Update the repository
+$ sudo apt-get update
+
+Step 4 - Install MongoDB
+$ sudo apt-get install -y mongodb-org
+
+Start mongodb and add it as service to be started at boot time:
+
+$ systemctl start mongod
+$ systemctl enable mongod
+
+Now check that mongodb has been started on port 27017 with the netstat command.
+mongo -u admin -p 123 --authenticationDatabase admin
+$ netstat -plntu
+
+// check for this
+tcp        0      0 127.0.0.1:27017         0.0.0.0:*               LISTEN      -               
+
+
+
+Configure MongoDB username and password
+========================================
+
+$ mongo
+> use admin
+> db.createUser({user:"admin", pwd:"123", roles:[{role:"root", db:"admin"}]})
+
+$ sudo gedit /lib/systemd/system/mongod.service
+and change this line
+ExecStart=/usr/bin/mongod --quiet --auth --config /etc/mongod.conf
+
+
+add --auth after --quiet
+
+
+$ mongo -u admin -p 123 --authenticationDatabase admin
+
+$ systemctl start mongod
+
+$ systemctl daemon-reload
+
+
+MongoDB Uninstall
+========================
+$ sudo service mongod stop
+
+$ sudo apt-get purge mongodb-org*
+
+$ sudo rm -r /var/log/mongodb
+
+$ sudo rm -r /var/lib/mongodb
+Posted by Manish Sharma at 9:48 AM No comments: 
+Email This
+BlogThis!
+Share to Twitter
+Share to Facebook
+Share to Pinterest
+
+              Linux Postgresql
+
+Install Postgresql
+
+$ sudo apt-get update
+$ sudo apt-get install postgresql postgresql-contrib
+$ sudo -i -u postgres
+$ psql
+This shows the terminal
+========================
+postgres=#
+
+To Exit postgres
+========================
+postgres=# \q
+
+
+Postgres Commands
+========================
+$ sudo -i -u postgres
+$ psql
+postgres=#
+           $ \l                                                        (Check the list of Db in psql)
+           $ CREATE DATABASE dbname;                                   (create a database in psql)
+           $ CREATE USER dbuser;                                       (create role(user))
+           $ ALTER USER dbuser with PASSWORD '123';                    (change username and password of your account)
+           $ ALTER database dbname owner to dbuser;                    ( change owner of db (ALTER DATABASE))
+           $ ALTER DATABASE olddb RENAME TO newdb;                     (change the db name)
+
+    Grant All Permissions to database
+
+            $ grant all privileges on database dbname to dbuser;  (GRANT)
+
+Now run the models file
+
+Drop commands:
+========================
+postgres=#
+            $ DROP DATABASE dbname;
+            $ DROP USER dbuser;
+            $ DROP TABLE 'tablename';
