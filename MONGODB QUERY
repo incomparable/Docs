@@ -1,0 +1,29 @@
+show dbs
+
+use testcoll
+
+db.testcoll.insert({name:'gaurav', age:25})
+db.testcoll.insert({name:'tom', age:28})
+
+show tables
+
+db.testcoll.find()
+
+db.testcoll.find().pretty()
+
+db.testcoll.update({name:'gaurav'},{$set:{age:21}})
+
+db.testcoll.update({}, {$set:{age:21}}, {multi:true})
+
+db.testcoll.remove({name:'tom'})
+
+db.dropDatabase()
+
+result = self.db.user.find({
+    "$or":
+        [
+        # {"title": text}
+        # {"title" : { "$regex" : ".*${text}.*"} }
+        {'email': {'$regex': text, '$options': 'i'}}
+        ]
+    })
