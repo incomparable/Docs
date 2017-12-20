@@ -1,0 +1,40 @@
+
+Install Postgresql
+
+$ sudo apt-get update
+$ sudo apt-get install postgresql postgresql-contrib
+$ sudo -i -u postgres
+$ psql
+This shows the terminal
+========================
+postgres=#
+
+To Exit postgres
+========================
+postgres=# \q
+
+
+Postgres Commands
+========================
+$ sudo -i -u postgres
+$ psql
+postgres=#
+           $ \l                                                        (Check the list of Db in psql)
+           $ CREATE DATABASE dbname;                                   (create a database in psql)
+           $ CREATE USER dbuser;                                       (create role(user))
+           $ ALTER USER dbuser with PASSWORD '123';                    (change username and password of your account)
+           $ ALTER database dbname owner to dbuser;                    (change owner of db (ALTER DATABASE))
+           $ ALTER DATABASE olddb RENAME TO newdb;                     (change the db name)
+
+    Grant All Permissions to database
+
+            $ grant all privileges on database dbname to dbuser;  (GRANT)
+
+Now run the models file
+
+Drop commands:
+========================
+postgres=#
+            $ DROP DATABASE dbname;
+            $ DROP USER dbuser;
+            $ DROP TABLE 'tablename';
