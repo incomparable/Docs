@@ -1,0 +1,151 @@
+ MongoDB Commands 
+
+
+mongo -u admin -p 123 --authenticationDatabase admin
+
+Create DB
+============
+
+> use dbname
+
+To create db use need to insert data in atleast one document
+db.movie.insert({"name":"tutorials point"})
+
+
+NOTE:
+In MongoDB default database is test. If you didn't create any database, 
+then collections will be stored in test database.
+
+
+Drop DB
+=========
+
+select db with use command
+
+> use nskdb
+> db.dropDatabase()
+
+
+Create Collection
+====================
+
+syntax is:-
+db.createCollection(name, options)
+
+options can be :-
+ - capped, autoIndexId, size, max
+
+> db.createCollection("mycollection")
+> db.createCollection("mycol", { capped : true, autoIndexId : true, size : 
+   6142800, max : 10000 } )
+
+> db.createCollection("user", { autoIndexId : true } )    
+
+> show collections
+
+
+Drop Collection
+=================
+
+> db.mycollection.drop()
+
+The insert() Method
+=======================
+
+db.mycol.insert({
+   title: 'MongoDB Overview', 
+   likes: 100
+})
+
+BULK WRITE
+-----------
+To insert multiple documents in a single query, you can pass an array of documents in insert() command.
+
+db.mycol.insert([{
+   title: 'Python Overview', 
+   likes: 200
+},
+{
+   title: 'Nodejs Overview', 
+   likes: 70
+},
+
+])
+
+
+The find() Method
+=======================
+
+db.COLLECTION_NAME.find()
+
+> db.mycol.find()
+> db.mycol.find().pretty()
+> db.mycol.find({likes: 100}).pretty()
+
+
+
+             Linux MongoDB
+
+Install MongoDB
+=============
+
+Step 1 - Importing the Public Key
+
+$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+
+
+Step 2 - Create source list file MongoDB
+
+$ echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+Step 3 - Update the repository
+$ sudo apt-get update
+
+Step 4 - Install MongoDB
+$ sudo apt-get install -y mongodb-org
+
+Start mongodb and add it as service to be started at boot time:
+
+$ systemctl start mongod
+$ systemctl enable mongod
+
+Now check that mongodb has been started on port 27017 with the netstat command.
+mongo -u admin -p 123 --authenticationDatabase admin
+$ netstat -plntu
+
+// check for this
+tcp        0      0 127.0.0.1:27017         0.0.0.0:*               LISTEN      -               
+
+
+
+Configure MongoDB username and password
+========================================
+
+$ mongo
+> use admin
+> db.createUser({user:"admin", pwd:"123", roles:[{role:"root", db:"admin"}]})
+
+$ sudo gedit /lib/systemd/system/mongod.service
+and change this line
+ExecStart=/usr/bin/mongod --quiet --auth --config /etc/mongod.conf
+
+
+add --auth after --quiet
+
+
+$ mongo -u admin -p 123 --authenticationDatabase admin
+
+$ systemctl start mongod
+
+$ systemctl daemon-reload
+
+
+MongoDB Uninstall
+========================
+$ sudo service mongod stop
+
+$ sudo apt-get purge mongodb-org*
+
+$ sudo rm -r /var/log/mongodb
+
+$ sudo rm -r /var/lib/mongodb
