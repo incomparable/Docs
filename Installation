@@ -1,0 +1,91 @@
+
+############################################################################
+#                           Check HD space in linux                        #
+############################################################################
+hf
+
+############################################################################
+#       Upgrade Currently Installed Packages after installing linux        #
+############################################################################
+sudo apt-get update
+
+############################################################################
+#   Next, upgrade installed packages to their latest available versions    #
+############################################################################
+sudo apt-get upgrade
+
+
+############################################################################
+#                               Install terminator                         #
+############################################################################
+sudo add-apt-repository ppa:gnome-terminator/nightly
+sudo apt-get update
+sudo apt-get install terminator
+
+Uninstall just terminator
+sudo apt-get remove terminator
+
+
+############################################################################
+#                            Install sublime-text-2                        #
+############################################################################
+sudo add-apt-repository ppa:webupd8team/sublime-text-2
+sudo apt-get update
+sudo apt-get install sublime-text
+
+
+############################################################################
+#                             Youtube download                             #
+############################################################################
+Youtube-dl <url>
+
+
+############################################################################
+#                             Script download                              #
+############################################################################
+Wget <url>
+wget https://mbostock.github.com/d3/d3.v2.js
+
+
+
+############################################################################
+#                                   Run.sh                                 #
+############################################################################
+$ chmod a+x run.sh
+
+############################################################################
+#                               Install Heroku                             #
+############################################################################
+sudo add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install heroku
+heroku login
+
+############################################################################
+#                                 Install SQLITE                           #
+############################################################################
+-1- 
+sudo apt-get update
+sudo apt-get install sqlite3 libsqlite3-dev
+
+-2-
+sudo apt-cache search sqlite3-dev
+sudo apt install libsqlite3-dev-y
+sudo apt -f install
+sudo apt install sqllitebrowser
+sqlitebrowser &[1] 2742
+
+############################################################################
+#                                nstall Teamviewer                         #
+############################################################################
+wget https://download.teamviewer.com/download/teamviewer_i386.deb
+sudo dpkg -i teamviewer_i386.deb
+sudo apt update && sudo apt -f install
+sudo teamviewer --daemon enable
+
+############################################################################
+#                                Install Crome                             #
+############################################################################
+Sudo apt install chromium-browser
+
